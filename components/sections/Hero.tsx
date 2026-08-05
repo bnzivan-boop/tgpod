@@ -84,7 +84,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: EASE, delay: 0.6 }}
-          className="pointer-events-auto absolute left-[5%] top-[62%] w-44"
+          className="pointer-events-auto absolute left-[calc(50%-450px)] top-[63%] w-44"
         >
           <div className="glass p-4">
             <div className="text-lg font-semibold tracking-tight text-chalk">{hero.installCard.value}</div>
@@ -102,16 +102,16 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.7 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: EASE, delay: 0.75 }}
-          className="pointer-events-auto absolute left-[calc(50%-275px)] top-[58%]"
+          className="pointer-events-auto absolute left-1/2 top-[77%] -translate-x-1/2"
         >
-          <CircleButton href={hero.circle.href} label={hero.circle.label} />
+          <CircleButton href={hero.circle.href} label={hero.circle.label} magnetic />
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: EASE, delay: 0.85 }}
-          className="pointer-events-auto absolute right-[5%] top-[62%]"
+          className="pointer-events-auto absolute right-[calc(50%-450px)] top-[45%]"
         >
           <StatBadge value={hero.statBadge.value} label={hero.statBadge.label} />
         </motion.div>
