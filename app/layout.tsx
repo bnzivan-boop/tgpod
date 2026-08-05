@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Michroma, Archivo, JetBrains_Mono } from "next/font/google";
 import { meta } from "@/lib/content";
+import { asset } from "@/lib/asset";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { Cursor } from "@/components/layout/Cursor";
 import "./globals.css";
@@ -29,12 +30,12 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   title: meta.title,
   description: meta.description,
-  icons: { icon: "/favicon.svg", apple: "/apple-touch-icon.png" },
+  icons: { icon: asset("/favicon.svg"), apple: asset("/apple-touch-icon.png") },
   openGraph: {
     title: meta.ogTitle,
     description: meta.ogDescription,
     type: "website",
-    images: [{ url: "/media/og-image.jpg", width: 1500, height: 1674 }],
+    images: [{ url: asset("/media/og-image.jpg"), width: 2752, height: 1536 }],
   },
 };
 

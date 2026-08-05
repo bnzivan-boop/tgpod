@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { hero } from "@/lib/content";
+import { asset } from "@/lib/asset";
 import { CircleButton } from "@/components/ui/CircleButton";
 import { StatBadge } from "@/components/ui/StatBadge";
 import { EASE } from "@/lib/motion";
@@ -32,7 +33,7 @@ export function Hero() {
       {/* z-0 — background scene */}
       <div className="absolute inset-0">
         <Image
-          src={hero.bg.src}
+          src={asset(hero.bg.src)}
           alt={hero.bg.alt}
           fill
           priority
@@ -74,7 +75,7 @@ export function Hero() {
 
       {/* z-2 — pod cutout, aligned over the same scene */}
       <div aria-hidden className="pointer-events-none absolute inset-0 z-[2]">
-        <Image src={hero.cutout.src} alt="" fill priority quality={90} sizes="100vw" className="object-cover" />
+        <Image src={asset(hero.cutout.src)} alt="" fill priority quality={90} sizes="100vw" className="object-cover" />
       </div>
 
       {/* z-3 — floating satellites (desktop): the two fact cards sit on one

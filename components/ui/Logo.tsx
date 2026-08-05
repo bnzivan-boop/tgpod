@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { asset } from "@/lib/asset";
 
 /**
  * Brand logos from public/brand — used as-is, never recoloured or redrawn.
@@ -30,7 +31,7 @@ export function Logo({
   const width = Math.round((f.w / f.h) * height);
   const img = (
     <Image
-      src={f.src}
+      src={asset(f.src)}
       alt={href ? "" : "TG Pod"}
       width={width}
       height={height}

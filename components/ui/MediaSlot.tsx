@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { asset } from "@/lib/asset";
 
 export type Media = { id: string; src?: string; alt: string };
 
@@ -46,7 +47,7 @@ export function MediaSlot({
       style={ratio ? { aspectRatio: ratio } : undefined}
     >
       <Image
-        src={media.src}
+        src={asset(media.src)}
         alt={media.alt}
         fill
         sizes={sizes}
