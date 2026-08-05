@@ -1,0 +1,244 @@
+@import "tailwindcss";
+
+@theme {
+  /* page passe-partout & surfaces */
+  --color-void: #050605;
+  --color-ink: #0b0d0c;
+  --color-ink-2: #101413;
+  --color-ink-3: #171b19;
+
+  /* accent — neon green (replaces reference orange everywhere) */
+  --color-acid: #6fff8b;
+  --color-acid-deep: #2ed96e;
+  --color-acid-dim: #1b5c33;
+  --color-glow: rgba(111, 255, 139, 0.45);
+
+  /* text */
+  --color-chalk: #f4f6f4;
+  --color-muted: #9aa39c;
+  --color-faint: #666e68;
+
+  /* glass & lines */
+  --color-glass: rgba(255, 255, 255, 0.055);
+  --color-glass-hi: rgba(255, 255, 255, 0.09);
+  --color-line: rgba(255, 255, 255, 0.11);
+  --color-line-hi: rgba(255, 255, 255, 0.22);
+
+  /* inverted (paper) section */
+  --color-paper: #f2f1ea;
+  --color-line-dark: rgba(8, 10, 9, 0.17);
+
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 40px;
+
+  --font-display: var(--font-michroma), var(--font-archivo), system-ui, sans-serif;
+  --font-text: var(--font-archivo), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+:root {
+  --fs-mega: clamp(46px, 11vw, 210px);
+  --fs-h2: clamp(34px, 5.2vw, 82px);
+  --fs-h3: clamp(22px, 2.6vw, 40px);
+  --fs-stat: clamp(40px, 6vw, 96px);
+  --fs-display-light: clamp(28px, 4vw, 64px);
+  --fs-lead: clamp(17px, 1.5vw, 22px);
+  --fs-body: 16px;
+  --fs-label: 11px;
+  --pad: clamp(20px, 4vw, 64px);
+  --container: 1400px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    background: var(--color-void);
+  }
+
+  body {
+    margin: 0;
+    padding: 12px;
+    overflow-x: hidden;
+    background: var(--color-void);
+    color: var(--color-chalk);
+    font-family: var(--font-text);
+    font-size: var(--fs-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  @media (max-width: 600px) {
+    body {
+      padding: 8px;
+    }
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+  }
+
+  ::selection {
+    background: var(--color-acid);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-acid);
+    outline-offset: 4px;
+  }
+}
+
+/* ---------- primitives ---------- */
+
+@layer components {
+.frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: var(--color-ink);
+}
+
+.container {
+  width: min(calc(100% - var(--pad) * 2), var(--container));
+  margin-inline: auto;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.font-mono-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.text-metal {
+  background: linear-gradient(105deg, #ffffff 0%, #c9d2cc 38%, #6c7873 58%, #6fff8b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04) 55%, rgba(255, 255, 255, 0.07));
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 24px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06),
+    0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.glow-accent {
+  filter: drop-shadow(0 0 24px var(--color-glow));
+}
+
+.grid-texture {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+/* concave arch cut at the bottom edge of the hero canvas */
+.arch-cut {
+  mask-image:
+    radial-gradient(320px 72px at 50% calc(100% + 8px), transparent 70px, black 71px),
+    linear-gradient(black, black);
+  mask-composite: intersect;
+  -webkit-mask-image:
+    radial-gradient(320px 72px at 50% calc(100% + 8px), transparent 70px, black 71px),
+    linear-gradient(black, black);
+  -webkit-mask-composite: source-in;
+}
+
+@media (max-width: 700px) {
+  .arch-cut {
+    mask-image:
+      radial-gradient(180px 44px at 50% calc(100% + 5px), transparent 42px, black 43px),
+      linear-gradient(black, black);
+    -webkit-mask-image:
+      radial-gradient(180px 44px at 50% calc(100% + 5px), transparent 42px, black 43px),
+      linear-gradient(black, black);
+  }
+}
+}
+
+/* custom cursor */
+@media (pointer: fine) {
+  .cursor-dot {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-acid);
+    pointer-events: none;
+    mix-blend-mode: difference;
+    transition: transform 0.18s var(--ease), opacity 0.18s;
+  }
+}
+
+@media (pointer: coarse) {
+  .cursor-dot {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .cursor-dot {
+    display: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
