@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { hero } from "@/lib/content";
+import { useIntroDone } from "@/components/layout/Intro";
 import { asset } from "@/lib/asset";
 import { CircleButton } from "@/components/ui/CircleButton";
 import { StatBadge } from "@/components/ui/StatBadge";
@@ -22,6 +23,7 @@ import { EASE } from "@/lib/motion";
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
+  const intro = useIntroDone();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const yWordmark = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -110]);
   const yBadges = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 110]);
@@ -58,7 +60,7 @@ export function Hero() {
       <motion.div
         style={{ y: yWordmark }}
         initial={{ opacity: 0, y: 46 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={intro ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 1.1, ease: EASE, delay: 0.15 }}
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-[36%] z-[1] select-none"
@@ -83,7 +85,7 @@ export function Hero() {
       <motion.div style={{ y: yBadges }} className="pointer-events-none absolute inset-0 z-[3] hidden lg:block">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={intro ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: EASE, delay: 0.6 }}
           className="pointer-events-auto absolute left-[calc(50%-450px)] top-[63%] w-44"
         >
@@ -101,7 +103,7 @@ export function Hero() {
 
         <motion.div
           initial={{ opacity: 0, scale: 0.7 }}
-          animate={{ opacity: 1, scale: 1 }}
+          animate={intro ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.8, ease: EASE, delay: 0.75 }}
           className="pointer-events-auto absolute left-1/2 top-[77%] -translate-x-1/2"
         >
@@ -110,7 +112,7 @@ export function Hero() {
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={intro ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: EASE, delay: 0.85 }}
           className="pointer-events-auto absolute right-[calc(50%-450px)] top-[45%]"
         >
@@ -119,7 +121,7 @@ export function Hero() {
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={intro ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: EASE, delay: 0.95 }}
           className="absolute right-[7%] top-[13%] flex items-start justify-end gap-5 text-right"
         >
@@ -144,7 +146,7 @@ export function Hero() {
       {/* mobile satellites */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={intro ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, ease: EASE, delay: 0.7 }}
         className="absolute inset-x-0 bottom-24 z-[3] flex flex-wrap items-center justify-center gap-3 px-6 lg:hidden"
       >
@@ -155,7 +157,7 @@ export function Hero() {
       {/* scroll hint */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        animate={intro ? { opacity: 1 } : {}}
         transition={{ duration: 1, delay: 1.4 }}
         className="font-mono-label absolute bottom-24 left-1/2 z-[3] flex -translate-x-1/2 items-center gap-3 text-muted max-lg:hidden"
       >

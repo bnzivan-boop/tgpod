@@ -1,4 +1,5 @@
 import { Nav } from "@/components/layout/Nav";
+import { IntroProvider } from "@/components/layout/Intro";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { Hero } from "@/components/sections/Hero";
@@ -15,7 +16,7 @@ import { CTA } from "@/components/sections/CTA";
 
 export default function Home() {
   return (
-    <>
+    <IntroProvider>
       <ScrollProgress />
       <Nav />
       <div className="frame">
@@ -34,6 +35,6 @@ export default function Home() {
         </main>
         <Footer />
       </div>
-    </>
+    </IntroProvider>
   );
 }
