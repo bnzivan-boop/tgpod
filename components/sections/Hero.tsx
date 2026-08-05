@@ -52,18 +52,24 @@ export function Hero() {
         }}
       />
 
-      {/* z-1 — mega wordmark behind the pod */}
+      {/* z-1 — mega wordmark behind the pod: the two words hug the edges,
+          the pod buries the middle, like the reference */}
       <motion.div
         style={{ y: yWordmark }}
         initial={{ opacity: 0, y: 46 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.1, ease: EASE, delay: 0.15 }}
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-[34%] z-[1] select-none text-center"
+        className="pointer-events-none absolute inset-x-0 top-[36%] z-[1] select-none"
       >
-        <span className="font-display block whitespace-nowrap text-[clamp(64px,16.5vw,290px)] leading-[0.95] tracking-[-0.02em] text-chalk">
-          TG&nbsp;<span className="text-metal">POD</span>
-        </span>
+        <div className="relative mx-auto flex max-w-[1760px] items-baseline justify-between px-[4%]">
+          <span className="font-display whitespace-nowrap text-[clamp(64px,15vw,270px)] leading-[0.95] tracking-[-0.02em] text-chalk">
+            TG
+          </span>
+          <span className="font-display text-metal whitespace-nowrap text-[clamp(64px,15vw,270px)] leading-[0.95] tracking-[-0.02em]">
+            POD
+          </span>
+        </div>
       </motion.div>
 
       {/* z-2 — pod cutout, aligned over the same scene */}
@@ -71,13 +77,14 @@ export function Hero() {
         <Image src={hero.cutout.src} alt="" fill priority quality={90} sizes="100vw" className="object-cover" />
       </div>
 
-      {/* z-3 — floating satellites (desktop) */}
+      {/* z-3 — floating satellites (desktop): the two fact cards sit on one
+          line, flanking the pod symmetrically */}
       <motion.div style={{ y: yBadges }} className="pointer-events-none absolute inset-0 z-[3] hidden lg:block">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: EASE, delay: 0.6 }}
-          className="pointer-events-auto absolute left-[calc(50%-400px)] top-[33%] w-44"
+          className="pointer-events-auto absolute left-[5%] top-[62%] w-44"
         >
           <div className="glass p-4">
             <div className="text-lg font-semibold tracking-tight text-chalk">{hero.installCard.value}</div>
@@ -95,7 +102,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.7 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: EASE, delay: 0.75 }}
-          className="pointer-events-auto absolute left-[calc(50%-320px)] top-[56%]"
+          className="pointer-events-auto absolute left-[calc(50%-275px)] top-[58%]"
         >
           <CircleButton href={hero.circle.href} label={hero.circle.label} />
         </motion.div>
@@ -104,7 +111,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: EASE, delay: 0.85 }}
-          className="pointer-events-auto absolute right-[calc(50%-395px)] top-[44%]"
+          className="pointer-events-auto absolute right-[5%] top-[62%]"
         >
           <StatBadge value={hero.statBadge.value} label={hero.statBadge.label} />
         </motion.div>
