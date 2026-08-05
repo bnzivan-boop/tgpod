@@ -6,7 +6,9 @@ If a file is deleted, the site renders a labelled placeholder instead of a broke
 
 | id | file | used in | current size | recommended |
 |---|---|---|---|---|
-| hero-pod | `hero-pod.jpg` | Hero (main render), OG image | 1500×1674 | 1600×1800+, webp |
+| hero-bg | `hero-bg.webp` | Hero background — moon scene with the pod | 5504×3072 (2× upscale + unsharp) | keep |
+| hero-pod-cutout | `hero-pod-cutout.webp` | Hero — pod cutout layered over the wordmark; pixel-aligned with `hero-bg` | 5504×3072 RGBA | keep in sync with hero-bg |
+| hero-pod | `hero-pod.jpg` | reserve (Red Bull co-brand render) | 1500×1674 | — |
 | inside-work | `inside-work.webp` | Inside the pod — Work mode, Audience card 1 | ~1400×2000 | keep |
 | inside-play | `inside-play.webp` | Inside the pod — Play mode | ~1600×2000 | keep |
 | pod-exterior | `pod-exterior.webp` | Specification (production prototype), Audience card 3 | ~960×1280 | 1200×1600 |
