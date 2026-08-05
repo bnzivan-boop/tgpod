@@ -23,7 +23,9 @@ jobs:
         with:
           node-version: 24
           cache: npm
-      - run: npm ci
+      # npm install instead of npm ci: the macOS-generated lockfile omits
+      # linux-only optional packages (@emnapi/*), which npm ci rejects
+      - run: npm install --no-audit --no-fund
       - run: npm run build
         env:
           GITHUB_PAGES: "true"
